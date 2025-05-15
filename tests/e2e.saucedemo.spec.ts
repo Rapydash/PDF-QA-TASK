@@ -4,16 +4,19 @@ import { InventoryPage } from "./pages/InventoryPage";
 import { CartPage } from "./pages/CartPage";
 import { CheckoutPage } from "./pages/CheckoutPage";
 import { logStorage } from "./utils/storageLogger";
+import { clearStorage } from "./utils/StorageCleaner";
 
 test.describe.configure({ mode: "parallel" });
 
-test("Complete purchase flow", async ({ page }) => {
+test("Complete purchase flow", async ({ page, context }) => {
   const loginPage = new LoginPage(page);
   const inventoryPage = new InventoryPage(page);
   const cartPage = new CartPage(page);
   const checkoutPage = new CheckoutPage(page);
 
   await loginPage.goto();
+  await clearStorage(page);
+  await page.waitForTimeout(1000);
   await loginPage.login("standard_user", "secret_sauce");
 
   await inventoryPage.addItem("sauce-labs-backpack");
