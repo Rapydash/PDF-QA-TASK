@@ -5,3 +5,6 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Завжди треба додавати в .gitignore файли, які збергають storageState, бо це чутливі дані
+/.auth

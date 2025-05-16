@@ -1,4 +1,4 @@
-import { Page, expect } from "@playwright/test";
+import { Page, expect } from '@playwright/test';
 
 export class InventoryPage {
   constructor(private page: Page) {}
@@ -15,16 +15,11 @@ export class InventoryPage {
     await this.page.click('[data-test="shopping-cart-link"]');
   }
 
-  async sortItems(option: "az" | "za" | "lohi" | "hilo") {
-    await this.page.selectOption(
-      '[data-test="product-sort-container"]',
-      option
-    );
+  async sortItems(option: 'az' | 'za' | 'lohi' | 'hilo') {
+    await this.page.selectOption('[data-test="product-sort-container"]', option);
   }
 
   async assertCartBadge(count: number) {
-    await expect(
-      this.page.locator('[data-test="shopping-cart-badge"]')
-    ).toHaveText(String(count));
+    await expect(this.page.locator('[data-test="shopping-cart-badge"]')).toHaveText(String(count));
   }
 }
