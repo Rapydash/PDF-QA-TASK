@@ -3,7 +3,6 @@ import { LoginPage } from './pages/LoginPage';
 import { InventoryPage } from './pages/InventoryPage';
 import { CartPage } from './pages/CartPage';
 import { CheckoutPage } from './pages/CheckoutPage';
-import { logStorage } from './utils/StorageLogger';
 
 test('Checkout without filling information', async ({ page }) => {
   const loginPage = new LoginPage(page);
@@ -20,11 +19,7 @@ test('Checkout without filling information', async ({ page }) => {
 
   await page.click('[data-test="continue"]');
 
-  // Подумати
-  await page
-    .locator('[data-test="checkout-info-container"] div')
-    .filter({ hasText: 'Error: First Name is required' })
-    .nth(2)
-    .click();
-  await expect(page.locator('form')).toContainText('Error: First Name is required');
+  const errorLocator = page.locator('[data-test="error"]');
+  await expect(errorLocator).toBeVisible();
+  await expect(errorLocator).toHaveText('Error: First Name is required');
 });

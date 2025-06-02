@@ -4,9 +4,7 @@ import { Page } from '@playwright/test';
 export async function loginshort(page: Page, username: string, password: string) {
   await page.goto('/');
   await page.locator('[data-test="username"]').fill(username);
-  await page.waitForTimeout(300);
   await page.locator('[data-test="password"]').fill(password);
-  await page.waitForTimeout(300);
   await page.locator('[data-test="login-button"]').click();
 }
 

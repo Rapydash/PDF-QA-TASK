@@ -42,7 +42,7 @@ test('Complete purchase flow', async ({ page, context }) => {
 
   // В одному тесті краще не комбінувати між собою логіку з POM та з прямим використанням пейджі
   await page.locator('[data-test="back-to-products"]').click();
-  await page.getByRole('button', { name: 'Open Menu' }).click();
+  await page.locator('#react-burger-menu-btn').click();
   await page.locator('[data-test="logout-sidebar-link"]').click();
 
   await logStorage(page);
