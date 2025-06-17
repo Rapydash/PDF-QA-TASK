@@ -1,9 +1,16 @@
 import { Page } from '@playwright/test';
 
+// export async function getItemNames(page: Page) {
+//   return await page.locator('.inventory_item_name').allTextContents(); -> почитай про конструкції .allTextContents() та .all()
+// }
 export async function getItemNames(page: Page) {
   return await page.$$eval('.inventory_item_name', (items) => items.map((item) => item.textContent || ''));
 }
 
+// export async function getItemNames(page: Page) {
+//   const pricesRaw = await page.locator('.inventory_item_name').all() -> це просто як приклад використання .all(). Можна простіше через .allTextContents()
+//   const prices = pricesRaw.forEach((price) => parseFloat((price.textContent || '').replace('$', '')))
+// }
 export async function getItemPrices(page: Page) {
   return await page.$$eval('.inventory_item_price', (items) =>
     items.map((item) => parseFloat((item.textContent || '').replace('$', '')))
