@@ -21,7 +21,7 @@ export default defineConfig({
   retries: 0,
   workers: process.env.CI ? 2 : undefined,
   use: {
-    trace: 'on-first-retry',
+    trace: 'on',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     baseURL: 'https://www.saucedemo.com',

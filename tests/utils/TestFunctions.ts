@@ -51,3 +51,12 @@ export async function checkoutWithEmptyInfo(loginPage: any, inventoryPage: any, 
   await cartPage.proceedToCheckout();
   await page.click('[data-test="continue"]');
 }
+
+export async function saveStorageState(page: Page, username: string, password: string, storagePath: string) {
+  await page.goto('https://www.saucedemo.com');
+  await page.fill('[data-test="username"]', username);
+  await page.fill('[data-test="password"]', password);
+  await page.click('[data-test="login-button"]');
+  await page.waitForURL('**/inventory.html');
+  await page.context().storageState({ path: storagePath });
+}

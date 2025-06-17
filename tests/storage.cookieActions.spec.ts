@@ -1,13 +1,5 @@
 import { test, expect } from '@playwright/test';
-
-async function saveStorageState(page, username, password, storagePath) {
-  await page.goto('https://www.saucedemo.com');
-  await page.fill('[data-test="username"]', username);
-  await page.fill('[data-test="password"]', password);
-  await page.click('[data-test="login-button"]');
-  await page.waitForURL('**/inventory.html');
-  await page.context().storageState({ path: storagePath });
-}
+import { saveStorageState } from './utils/TestFunctions';
 
 test('Save storage state after login', async ({ page }) => {
   await saveStorageState(page, 'standard_user', 'secret_sauce', 'storageState.json');
